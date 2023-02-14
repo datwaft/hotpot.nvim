@@ -2175,7 +2175,7 @@ package.preload["fennel.specials"] = package.preload["fennel.specials"] or funct
     else
     end
     utils.hook("require-macros", ast, scope)
-if ("import-macros" == tostring(ast[1])) then
+    if ("import-macros" == tostring(ast[1])) then
       return macro_loaded[modname]
     else
       return add_macros(macro_loaded[modname], ast, scope, parent)
