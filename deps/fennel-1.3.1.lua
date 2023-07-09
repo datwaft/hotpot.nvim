@@ -2083,7 +2083,7 @@ package.preload["fennel.specials"] = package.preload["fennel.specials"] or funct
       macro_loaded[modname] = compiler.assert(utils["table?"](loader(modname, filename)), "expected macros to be table", (_3freal_ast or ast))
     end
     utils.hook("require-macros", ast, scope)
-if ("import-macros" == tostring(ast[1])) then
+    if ("import-macros" == tostring(ast[1])) then
       return macro_loaded[modname]
     else
       return add_macros(macro_loaded[modname], ast, scope, parent)
@@ -3516,7 +3516,7 @@ package.preload["fennel.parser"] = package.preload["fennel.parser"] or function(
   local unpack = (table.unpack or _G.unpack)
   local function granulate(getchunk)
     local c, index, done_3f = "", 1, false
-    local function _197_(parser_state)
+    local function _198_(parser_state)
       if not done_3f then
         if (index <= #c) then
           local b = c:byte(index)
@@ -3541,11 +3541,11 @@ package.preload["fennel.parser"] = package.preload["fennel.parser"] or function(
         end
       end
     end
-    local function _203_()
+    local function _204_()
       c = ""
       return nil
     end
-    return _197_, _203_
+    return _198_, _204_
   end
   local function string_stream(str, _3foptions)
     local str0 = str:gsub("^#!", ";;")
@@ -3553,12 +3553,12 @@ package.preload["fennel.parser"] = package.preload["fennel.parser"] or function(
       _3foptions.source = str0
     end
     local index = 1
-    local function _205_()
+    local function _206_()
       local r = str0:byte(index)
       index = (index + 1)
       return r
     end
-    return _205_
+    return _206_
   end
   local delims = {[123] = 125, [125] = true, [40] = 41, [41] = true, [91] = 93, [93] = true}
   local function sym_char_3f(b)
