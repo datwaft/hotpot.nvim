@@ -4,6 +4,7 @@
 
 (local uv vim.loop)
 
+;; TODO drop the ! here
 (fn read-file! [path]
   ;; (string) :: table | false errors
   (with-open [fh (assert (io.open path :r) (.. "fs.read-file! io.open failed:" path))]
@@ -40,8 +41,7 @@
 (fn file-stat [path]
   (expect (file-exists? path)
           "cant check hash of %s, does not exist" path)
-  (let [{: mtime : size} (uv.fs_stat path)]
-    {:mtime mtime.sec : size}))
+  (uv.fs_stat path))
 
 ;; dont recompute all the time
 (local path-sep (string.match package.config "(.-)\n"))
@@ -80,6 +80,12 @@
                  (assert (uv.fs_mkdir path 493)))
       other (error (string.format "could not create path because %s exists at %s" other path)))))
 
+(fn rm-file [path]
+  (case (uv.fs_unlink path)
+    true true
+    (nil e) (values false e)
+    _ (error :x )))
+
 {: read-file!
  : write-file!
  : file-exists?
@@ -91,4 +97,5 @@
  : join-path
  : make-path
  : dirname
- : path-separator}
+ : path-separator
+ : rm-file}

@@ -19,11 +19,6 @@
    :enable_hotpot_diagnostics true
    :provide_require_fennel false})
 
-(fn M.set-index [i]
-  "Set the current runtime index"
-  (set M.index i)
-  (values M.index))
-
 (fn M.set-config [user-config]
   (let [new-config (M.default-config)]
     (each [_ k (ipairs [:preprocessor :modules :macros :traceback])]
@@ -46,5 +41,7 @@
     (set M.config new-config)
     (values M.config)))
 
+
+(M.set-config (M.default-config))
 (set M.proxied-keys "traceback")
 (setmetatable M {:__index #(match $2 :traceback (lazy-traceback))})
