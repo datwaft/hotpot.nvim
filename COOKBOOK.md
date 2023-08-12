@@ -10,10 +10,15 @@
   - everything [ahead of time](#ahead-of-time-compilation).
 - Write `init.lua` as `init.fnl`
 - [Write an config `ftplugin`](#write-an-ftplugin).
+
+<!--
+
 - See the output of
   - a fennel file or,
   - some arbitary fennel code.
 - Write a Neovim plugin in fennel
+
+-->
 
 <!-- panvimdoc-ignore-end -->
 
